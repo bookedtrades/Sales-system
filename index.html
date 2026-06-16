@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Sales System | Booked Trades</title>
+<meta name="description" content="The exact sales system behind a $250,161 month for a trade business.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0d0c0b;
+    --card:#181614;
+    --card-2:#211c17;
+    --orange:#FE6C26;
+    --orange-2:#ff8a4d;
+    --white:#ffffff;
+    --muted:#a39b92;
+    --muted-2:#6f6760;
+    --line:#2a241e;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);color:var(--white);
+    font-family:'DM Sans',sans-serif;line-height:1.6;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  .wrap{width:100%;max-width:880px;margin:0 auto;padding:0 24px;}
+
+  h1,h2,h3,.bebas{font-family:'Bebas Neue',sans-serif;font-weight:400;letter-spacing:1px;}
+  .cond{font-family:'Barlow Condensed',sans-serif;}
+
+  .eyebrow{
+    font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;
+    letter-spacing:5px;color:var(--orange);font-size:clamp(13px,2.4vw,16px);
+  }
+  .o{color:var(--orange);}
+  .glow{position:fixed;pointer-events:none;z-index:0;filter:blur(90px);opacity:.55;}
+  .glow.tl{top:-160px;left:-160px;width:420px;height:420px;background:radial-gradient(circle,#FE6C26,transparent 70%);}
+  .glow.br{bottom:-200px;right:-180px;width:480px;height:480px;background:radial-gradient(circle,#b53d12,transparent 70%);opacity:.4;}
+  main{position:relative;z-index:1;}
+
+  /* HERO */
+  .hero{padding:clamp(70px,12vw,130px) 0 clamp(50px,8vw,80px);text-align:center;}
+  .hero h1{
+    font-size:clamp(20px,4.6vw,34px);color:var(--white);line-height:1.05;margin:18px 0 6px;
+    text-transform:uppercase;
+  }
+  .hero .num{
+    font-size:clamp(86px,17vw,168px);line-height:0.82;letter-spacing:2px;margin:6px 0 4px;
+    background:linear-gradient(180deg,var(--orange-2),var(--orange));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  .hero .sub{
+    font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:clamp(22px,5vw,40px);
+    text-transform:uppercase;letter-spacing:1px;color:var(--white);
+  }
+  .hero .lede{
+    max-width:560px;margin:30px auto 0;color:var(--muted);font-size:clamp(16px,2.6vw,19px);
+  }
+  .hero .lede b{color:var(--white);font-weight:600;}
+  .btn{
+    display:inline-block;background:var(--orange);color:#0d0c0b;text-decoration:none;
+    font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;
+    letter-spacing:1.5px;font-size:clamp(17px,2.6vw,21px);
+    padding:18px 40px;border-radius:14px;margin-top:34px;
+    transition:transform .15s ease, box-shadow .15s ease;
+    box-shadow:0 10px 30px rgba(254,108,38,.25);
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(254,108,38,.4);}
+  .btn.ghost{background:transparent;color:var(--white);border:1px solid var(--line);box-shadow:none;}
+  .btn.ghost:hover{border-color:var(--orange);color:var(--orange);}
+
+  /* DIVIDER label */
+  .section{padding:clamp(40px,7vw,72px) 0;}
+  .kicker{
+    font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;
+    letter-spacing:4px;color:var(--orange);font-size:14px;margin-bottom:14px;
+  }
+  .section h2{
+    font-size:clamp(34px,7vw,62px);line-height:0.95;text-transform:uppercase;margin-bottom:22px;
+  }
+  .section .body{color:var(--muted);font-size:clamp(16px,2.5vw,19px);max-width:680px;}
+  .section .body b{color:var(--white);font-weight:600;}
+
+  /* PHASES */
+  .phase{
+    position:relative;background:var(--card);border:1px solid var(--line);border-radius:22px;
+    padding:clamp(28px,4.5vw,44px);margin-bottom:22px;overflow:hidden;
+  }
+  .phase .idx{
+    font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,8vw,64px);color:var(--orange);
+    line-height:0.8;display:block;margin-bottom:6px;letter-spacing:2px;
+  }
+  .phase h3{
+    font-size:clamp(26px,5vw,40px);line-height:1;text-transform:uppercase;margin-bottom:16px;color:var(--white);
+  }
+  .phase p{color:var(--muted);font-size:clamp(15px,2.4vw,18px);margin-bottom:16px;}
+  .phase p:last-of-type{margin-bottom:0;}
+  .phase p b{color:var(--white);font-weight:600;}
+  .phase .tag{
+    display:inline-block;margin-top:20px;background:rgba(254,108,38,.12);border:1px solid rgba(254,108,38,.3);
+    color:var(--orange);font-family:'Barlow Condensed',sans-serif;font-weight:600;
+    text-transform:uppercase;letter-spacing:1.5px;font-size:15px;padding:9px 18px;border-radius:10px;
+  }
+
+  /* PROOF */
+  .proofgrid{display:flex;flex-direction:column;gap:14px;margin-top:10px;}
+  .prow{
+    display:flex;align-items:center;gap:clamp(16px,4vw,32px);
+    background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:clamp(18px,3vw,26px) clamp(20px,3.5vw,32px);
+  }
+  .prow .pn{
+    font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,9vw,64px);line-height:0.8;letter-spacing:1px;
+    flex:0 0 auto;min-width:clamp(120px,28vw,180px);
+    background:linear-gradient(180deg,var(--orange-2),var(--orange));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  .prow .pt{color:#e8e2db;font-size:clamp(15px,2.5vw,19px);font-weight:500;}
+  .proofline{
+    text-align:center;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+    text-transform:uppercase;letter-spacing:1px;font-size:clamp(20px,4vw,30px);margin-top:34px;
+  }
+  .video-embed{
+    position:relative;width:100%;max-width:760px;margin:34px auto 0;
+    aspect-ratio:16/9;border-radius:18px;overflow:hidden;border:1px solid var(--line);
+    box-shadow:0 24px 60px rgba(0,0,0,.55);
+  }
+  .video-embed iframe, .video-embed video{position:absolute;inset:0;width:100%;height:100%;border:0;}
+  .ph-video{
+    position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+    background:var(--card-2);color:var(--muted);font-family:'Barlow Condensed',sans-serif;
+    text-transform:uppercase;letter-spacing:3px;font-size:15px;cursor:default;
+  }
+  .ph-video .play{width:76px;height:76px;border-radius:50%;background:var(--orange);position:relative;box-shadow:0 10px 30px rgba(254,108,38,.35);}
+  .ph-video .play:before{
+    content:"";position:absolute;top:50%;left:54%;transform:translate(-50%,-50%);
+    border-left:24px solid #0d0c0b;border-top:15px solid transparent;border-bottom:15px solid transparent;
+  }
+  .video-cap{
+    text-align:center;margin-top:34px;color:var(--white);
+    font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;
+    letter-spacing:2px;font-size:clamp(17px,2.9vw,24px);
+  }
+  .video-cap + .video-embed{margin-top:18px;}
+  .video-embed.lite{cursor:pointer;}
+  .yt-thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .yt-play{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;
+    width:84px;height:84px;border-radius:50%;background:var(--orange);border:0;cursor:pointer;
+    box-shadow:0 12px 34px rgba(254,108,38,.4);transition:transform .15s ease;
+  }
+  .yt-play:before{
+    content:"";position:absolute;top:50%;left:55%;transform:translate(-50%,-50%);
+    border-left:27px solid #0d0c0b;border-top:17px solid transparent;border-bottom:17px solid transparent;
+  }
+  .video-embed.lite:hover .yt-play{transform:translate(-50%,-50%) scale(1.07);}
+  .video-embed.lite:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(transparent 55%,rgba(0,0,0,.45));pointer-events:none;}
+
+  /* MEANS section */
+  .means{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:clamp(30px,5vw,52px);}
+  .means h2{font-size:clamp(30px,6vw,50px);}
+  .means ul{list-style:none;margin-top:8px;}
+  .means li{
+    position:relative;padding-left:38px;margin-bottom:16px;color:#e8e2db;font-size:clamp(16px,2.5vw,19px);
+  }
+  .means li:before{
+    content:"";position:absolute;left:0;top:9px;width:18px;height:18px;border-radius:50%;
+    background:var(--orange);
+  }
+  .means li:after{
+    content:"";position:absolute;left:6px;top:13px;width:5px;height:9px;border-right:2px solid #0d0c0b;
+    border-bottom:2px solid #0d0c0b;transform:rotate(45deg);
+  }
+
+  /* FINAL CTA */
+  .finalcta{
+    text-align:center;border-radius:28px;padding:clamp(46px,8vw,84px) clamp(24px,5vw,60px);
+    background:
+      radial-gradient(circle at 50% 0%, rgba(254,108,38,.22), transparent 60%),
+      var(--card);
+    border:1px solid var(--line);
+  }
+  .finalcta .eyebrow{display:block;margin-bottom:16px;}
+  .finalcta h2{font-size:clamp(36px,8vw,76px);line-height:0.92;text-transform:uppercase;}
+  .finalcta p{color:var(--muted);max-width:560px;margin:22px auto 0;font-size:clamp(16px,2.6vw,19px);}
+  .finalcta .small{
+    margin-top:22px;color:var(--muted-2);font-family:'Barlow Condensed',sans-serif;
+    text-transform:uppercase;letter-spacing:2px;font-size:14px;
+  }
+
+  footer{text-align:center;padding:48px 0 60px;color:var(--muted-2);}
+  footer .logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:2px;color:var(--white);}
+  footer .logo span{color:var(--orange);}
+  footer a{color:var(--muted);text-decoration:none;}
+  footer a:hover{color:var(--orange);}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1;transform:none;}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+<div class="glow tl"></div>
+<div class="glow br"></div>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">The Booked Trades Sales System</span>
+      <h1>Here's how one of our clients sold</h1>
+      <div class="num">$250,161</div>
+      <div class="sub">in new work, in 30 days</div>
+      <p class="lede">No chasing time wasters. No guessing. Just one system that brings the jobs in, qualifies them, books them, and turns quotes into paid work. <b>Below is the whole thing, start to finish.</b></p>
+      <a class="btn" href="https://call.bookedtrades.com/">Book a call</a>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="section">
+    <div class="wrap reveal">
+      <div class="kicker">What you're looking at</div>
+      <h2>The same system. Run for you.</h2>
+      <p class="body">Most trade businesses are busy when work is on and stressed when the phone goes quiet. The fix is not working harder. It is having a front end that fills the calendar every single week. <b>This is the exact system we ran to get that client a $250,161 month, and we run all of it for you.</b> Here is how it works.</p>
+    </div>
+  </section>
+
+  <!-- PHASES -->
+  <section class="section">
+    <div class="wrap">
+
+      <div class="phase reveal">
+        <span class="idx">01</span>
+        <h3>We run ads that bring in real local jobs</h3>
+        <p>We run proven ads in your service area that position you as the obvious choice to homeowners who are ready to spend. No boosting posts. No spray and pray.</p>
+        <p>Every ad sends people to one simple next step, so we capture their details and pre-frame the booking before you ever speak to them.</p>
+        <p><b>For that client, this brought in 60+ inquiries in the month.</b></p>
+        <span class="tag">60+ inquiries</span>
+      </div>
+
+      <div class="phase reveal">
+        <span class="idx">02</span>
+        <h3>We're on the phone within 5 minutes</h3>
+        <p>Speed to lead is everything. A lead that gets a call in 5 minutes is worth far more than one chased the next day.</p>
+        <p>Our team contacts every single inquiry fast, while they are still hot, so none of them go cold or get scooped by the bloke down the road.</p>
+        <p>And we don't stop after one try. If someone doesn't pick up, we keep following up across calls, texts and email until we get a response, so no lead ever gets left to go to waste.</p>
+        <span class="tag">5 minute response</span>
+      </div>
+
+      <div class="phase reveal">
+        <span class="idx">03</span>
+        <h3>We qualify every lead</h3>
+        <p>Not every inquiry is worth your time. We put every lead through a strict qualification sequence: project scope, price qualified, timeframe, and service area.</p>
+        <p><b>We only book quotes that we think are genuinely winnable, to save you wasting time on the road.</b></p>
+        <span class="tag">No time wasters</span>
+      </div>
+
+      <div class="phase reveal">
+        <span class="idx">04</span>
+        <h3>We book qualified leads straight into your calendar</h3>
+        <p>Once a lead is qualified, we book them directly into your calendar for a site inspection or quote. You just turn up to real opportunities.</p>
+        <p>You get new quotes to do every week without lifting a finger on the admin.</p>
+        <span class="tag">Calendar filled weekly</span>
+      </div>
+
+      <div class="phase reveal">
+        <span class="idx">05</span>
+        <h3>We warm them up before you meet them</h3>
+        <p>A booked lead is not a sold lead. The gap between booking and inspection is where most homeowners go cold, start second guessing, or ring around for other quotes. So we fill that gap.</p>
+        <p>We build pre-inspection nurture pages and email sequences that explain exactly why you are the right choice for their project. By the time you turn up, they already trust you and they are leaning towards yes.</p>
+        <p>Every step of the process is intentional and clear to the homeowner. No confusion about what happens next, no room for misunderstanding or frustration. Just a smooth path from inquiry to signed job.</p>
+        <span class="tag">Warm before you arrive</span>
+      </div>
+
+      <div class="phase reveal">
+        <span class="idx">06</span>
+        <h3>We help you turn quotes into signed jobs</h3>
+        <p>Winning quotes comes down to follow up and process, and that is the part most trades let slip. So we hand you the full back end to support it: detailed follow up and sales playbooks built for trade businesses, plus an open opportunities dashboard so you can see every live quote in one place.</p>
+        <p>Then we stay on it with you. Weekly catchups and quote tracking on our side keep you on track to hit your goals, and we flag exactly what needs following up so nothing falls through the cracks.</p>
+        <p><b>That client closed 46.43% of his quotes. He turned 28 bookings into 13 new jobs.</b></p>
+        <span class="tag">46.43% quote close rate</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROOF -->
+  <section class="section">
+    <div class="wrap reveal">
+      <div class="kicker">And it's not a one off</div>
+      <h2>Different trades. Same system.</h2>
+      <div class="proofgrid" style="margin-top:26px;">
+        <div class="prow reveal"><div class="pn">$400k</div><div class="pt">A Melbourne concreter did it in two months.</div></div>
+        <div class="prow reveal"><div class="pn">$164k</div><div class="pt">A Perth concreter won in his first month.</div></div>
+        <div class="prow reveal"><div class="pn">$371k</div><div class="pt">A Brisbane carpenter did in new decking jobs with us.</div></div>
+        <div class="prow reveal"><div class="pn">$138k</div><div class="pt">A Sunshine Coast concreter did in his first month.</div></div>
+      </div>
+      <div class="proofline reveal">Different companies. Same system. <span class="o">Same outcome.</span></div>
+
+      <!-- VIDEO: replace the whole .ph-video block below with your embed, e.g.
+      <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" title="Booked Trades case study" allow="autoplay; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>
+      For Vimeo use https://player.vimeo.com/video/YOUR_ID  -->
+      <p class="video-cap reveal">Check out this video from another one of our clients</p>
+      <div class="video-embed lite reveal" id="ytlite" data-id="_K9KIde0HcA">
+        <img class="yt-thumb" src="https://img.youtube.com/vi/_K9KIde0HcA/maxresdefault.jpg" alt="Booked Trades client case study" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/_K9KIde0HcA/hqdefault.jpg';">
+        <button class="yt-play" aria-label="Play video"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT IT MEANS -->
+  <section class="section">
+    <div class="wrap reveal">
+      <div class="means">
+        <div class="kicker">What this means for you</div>
+        <h2>You do the work. We run the front end.</h2>
+        <ul>
+          <li>A steady flow of qualified jobs booked into your calendar every week.</li>
+          <li>No more quiet months wondering where the next job is coming from.</li>
+          <li>No chasing leads, no admin, no time wasters draining your day.</li>
+          <li>A business that grows steadily year on year, instead of riding the feast and famine rollercoaster.</li>
+          <li>The freedom to hire, build a crew, and step back from the tools when you're ready.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="section">
+    <div class="wrap reveal">
+      <div class="finalcta">
+        <span class="eyebrow">Your next step</span>
+        <h2>Want this run for<br>your business?</h2>
+        <p>Book a quick call and we'll show you exactly how we'd build this system for your trade, in your area. No pressure, no hard sell. Just a clear plan.</p>
+        <a class="btn" href="https://call.bookedtrades.com/">Book a call</a>
+        <div class="small">Spots are limited. We only work with one trade per area.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="logo">BOOKED <span>TRADES</span></div>
+    <p style="margin-top:10px;"><a href="mailto:will@bookedtrades.com">will@bookedtrades.com</a></p>
+  </footer>
+
+</main>
+
+<script>
+  (function(){
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var els = document.querySelectorAll('.reveal');
+    if(reduce || !('IntersectionObserver' in window)){
+      els.forEach(function(e){e.classList.add('in');});
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    },{threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+    els.forEach(function(e){io.observe(e);});
+  })();
+
+  (function(){
+    var lite = document.getElementById('ytlite');
+    if(lite){
+      lite.addEventListener('click', function(){
+        var id = lite.getAttribute('data-id');
+        lite.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&playsinline=1" title="Booked Trades client case study" allow="autoplay; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>';
+      });
+    }
+  })();
+</script>
+</body>
+</html>
